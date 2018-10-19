@@ -226,12 +226,13 @@ class CI_DB_sqlite3_driver extends CI_DB {
 	 * Fetch Field Names
 	 *
 	 * @param	string	$table	Table name
+	 * @param	bool	$refresh_cache	Refresh data cache
 	 * @return	array
 	 */
-	public function list_fields($table)
+	public function list_fields($table, $refresh_cache = FALSE)
 	{
 		// Is there a cached result?
-		if (isset($this->data_cache['field_names'][$table]))
+		if ($refresh_cache === FALSE && isset($this->data_cache['field_names'][$table]))
 		{
 			return $this->data_cache['field_names'][$table];
 		}
